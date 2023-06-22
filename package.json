@@ -1,0 +1,24 @@
+{
+  "name": "cipherpost",
+  "version": "1.0.0",
+  "description": "an anonymous chat room with ability to see member names by entering a secret passcode",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "ewomatc",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.1.4",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "mongoose": "^7.3.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  }
+}

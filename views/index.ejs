@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cipherpost</title>
+</head>
+<body>
+  <% if (!user) { %>
+  <h1>Cipherpost</h1>
+  <h4><i>All posts are anonymous, sign-up or login to view the post authors.</i></h4>
+  <a href="/sign-up">Sign Up</a>
+  <a href="/log-in">Login</a>
+  <% } else { %>
+    <p>Welcome back <%= user.name %></p>
+    <% } %>
+</body>
+</html>
