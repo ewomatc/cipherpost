@@ -8,11 +8,18 @@
 <body>
   <% if (!user) { %>
   <h1>Cipherpost</h1>
-  <h4><i>All posts are anonymous, sign-up or login to view the post authors.</i></h4>
-  <a href="/sign-up">Sign Up</a>
-  <a href="/log-in">Login</a>
+  <h4><i>Welcome, signup or login to view posts.</i></h4>
+  <a href="/sign-up"><button>Sign Up</button></a>
+  <a href="/log-in"><button>Login</button></a>
   <% } else { %>
-    <p>Welcome back <%= user.name %></p>
+    <h3>Welcome back <%= user.name %></h3>
+    <% if (!user.membershipStatus) { %>
+    <p>Become a cipher by entering secret key and joining private membership</p>
+    <a href="/user/join-private"><button>Join Private</button></a>
+    <% } else { %>
+      <p style="color: rgb(255, 204, 0);">VERIFIED CIPHER</p>
+      <% } %>
+      <a href="user/logout-page"><button>Logout</button></a>
     <% } %>
 </body>
 </html>

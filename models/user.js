@@ -18,6 +18,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     minLength: 8,
     required: [true, 'Password is required']
+  },
+  membershipStatus: {
+    type: Boolean,
+    default: false
+  },
+  adminStatus: {
+    type: Boolean,
+    default: false
   }
 })
 

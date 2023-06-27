@@ -5,6 +5,7 @@ const session = require('express-session')
 const mongoose = require('mongoose')
 const passport = require('./auth/passport.js')
 const postRouter = require('./routes/posts.js')
+const userRouter = require('./routes/users.js')
 
 const app = express()
 
@@ -33,6 +34,7 @@ app.use(passport.session())
 
 
 app.use('/', postRouter)
+app.use('/user', userRouter)
 
 const PORT = process.env.PORT
 
