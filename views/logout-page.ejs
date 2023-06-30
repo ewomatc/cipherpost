@@ -4,8 +4,96 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logout - Cipherpost</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+.header {
+      background-color: #333333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .navigation {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navigation li {
+      margin-left: 10px;
+    }
+
+    .navigation li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 600px) {
+      .header {
+        flex-direction: row;
+      }
+
+      .navigation {
+        margin: 3px 2px;
+      }
+
+      .navigation li {
+        margin-left: 0;
+        margin-bottom: 5px;
+        margin-right: 15px;
+      }
+    }
+
+h4 {
+  color: #333;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 480px) {
+  h4 {
+    font-size: 18px;
+  }
+
+  button {
+    padding: 8px 16px;
+  }
+}
+
+  </style>
 </head>
 <body>
+  <div class="header">
+    <h2 class="logo">CipherPost.</h2>
+    <ul class="navigation">
+      <li><a href="/">Home</a></li>
+    </ul>
+  </div>
   <h4>Are you sure you want to logout?</h4>
   <a href="/user/logout"><button>Logout</button></a>
 </body>

@@ -10,6 +10,52 @@
   margin: 0;
   padding: 20px;
 }
+.header {
+      background-color: #333333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .navigation {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navigation li {
+      margin-left: 10px;
+    }
+
+    .navigation li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 600px) {
+      .header {
+        flex-direction: row;
+      }
+
+      .navigation {
+        margin: 3px 2px;
+      }
+
+      .navigation li {
+        margin-left: 0;
+        margin-bottom: 5px;
+        margin-right: 15px;
+      }
+    }
 
 h1 {
   color: #333;
@@ -34,6 +80,7 @@ button {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 button:hover {
@@ -76,16 +123,28 @@ button:hover {
 }
 
 .logout-btn button {
-  background-color: #dc3545;
+  background-color: #333333;
 }
 
 .logout-btn button:hover {
-  background-color: #b02a37;
+  background-color: #181818;
 }
 
   </style>
 </head>
 <body>
+  <div class="header">
+    <h2 class="logo">CipherPost.</h2>
+    <ul class="navigation">
+      <li><a href="/">Home</a></li>
+      <% if(user) {%>
+      <li><a href="/user/logout-page">Logout</a></li>
+      <% } else { %>
+        <li><a href="/sign-up">Signup</a></li>
+      <% } %>
+      <li></li>
+    </ul>
+  </div>
   <% if (!user) { %>
   <div class="container">
     <h1>Cipherpost</h1>
@@ -97,6 +156,7 @@ button:hover {
     <div class="container">
     <h3>Welcome back <%= user.name %></h3>
     <% if (!user.membershipStatus) { %>
+      <p>Become a Cipher to know the authors of posts and the time and date they were made!</p>
     <p>Become a cipher by entering secret key and joining private membership</p>
     <a href="/user/join-private"><button>Join Private</button></a>
     <% } else { %>
@@ -109,12 +169,12 @@ button:hover {
       <% posts.forEach((post) => { %>
         <div class="post">
           <h4>Title: <%= post.title %></h4>
-          <p>Post: <%= post.content %></p>
+          <p><b>Post:</b> <%= post.content %></p>
           <% if (user.membershipStatus) { %>
             <p class="author">Author: <%= post.author.name %></p>
-            <p class="date">Date Created: <%= post.createdAt.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+            <p class="date"><b>Date Created:</b> <%= post.createdAt.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
             </p>
-            <p class="date">Date Updated: <%= post.updatedAt.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+            <p class="date"><b>Date Updated:</b> <%= post.updatedAt.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
             </p>
             <% } %>
         </div>

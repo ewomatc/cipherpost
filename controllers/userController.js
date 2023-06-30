@@ -61,7 +61,7 @@ exports.create_post = async(req, res, next) => {
     })
 
     await newPost.save()
-    await newPost.populate('author').execPopulate();
+    //await newPost.populate('author').exec();
 
     res.redirect('/')
   }

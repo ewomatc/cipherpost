@@ -10,6 +10,54 @@
   margin: 0 auto;
   padding: 20px;
 }
+.header {
+      background-color: #333333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+.header h2{
+  color: #fff;
+}
+    .logo {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .navigation {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navigation li {
+      margin-left: 10px;
+    }
+
+    .navigation li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 600px) {
+      .header {
+        flex-direction: row;
+      }
+
+      .navigation {
+        margin: 3px 2px;
+      }
+
+      .navigation li {
+        margin-left: 0;
+        margin-bottom: 5px;
+        margin-right: 15px;
+      }
+    }
 
 h2 {
   color: #333;
@@ -81,6 +129,12 @@ a:hover {
   </style>
 </head>
 <body>
+  <div class="header">
+    <h2 class="logo">CipherPost.</h2>
+    <ul class="navigation">
+      <li><a href="/">Home</a></li>
+    </ul>
+  </div>
   <h2>SignUp</h2>
   <form action="/sign-up" method="post">
     <label for="name">Name</label>
