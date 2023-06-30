@@ -2,11 +2,17 @@ const bcrypt = require('bcryptjs')
 const express = require('express')
 const { body, validationResult } = require('express-validator')
 const User = require('../models/user')
+const Post = require('../models/post')
 const passport = require('passport')
 
 //get home page
 exports.index = async(req, res, next) => {
-  res.render('index', { user: req.user})
+  try {
+    const posts = await Post.find().populate('author').exec();
+    res.render('index', {user: req.user, posts: posts})
+  } catch (error) {
+    next(error)
+  }
 }
 
 //get sign-up page

@@ -4,22 +4,122 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cipherpost</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+h3 {
+  color: #666;
+}
+
+h4 {
+  color: #777;
+}
+
+p {
+  color: #555;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.post {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.post h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.post p {
+  margin-bottom: 5px;
+}
+
+.post .date {
+  color: #11680b;
+  font-size: 12px;
+}
+
+.post .author {
+  font-weight: bold;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.logout-btn button {
+  background-color: #dc3545;
+}
+
+.logout-btn button:hover {
+  background-color: #b02a37;
+}
+
+  </style>
 </head>
 <body>
   <% if (!user) { %>
-  <h1>Cipherpost</h1>
-  <h4><i>Welcome, signup or login to view posts.</i></h4>
-  <a href="/sign-up"><button>Sign Up</button></a>
-  <a href="/log-in"><button>Login</button></a>
+  <div class="container">
+    <h1>Cipherpost</h1>
+    <h4><i>Welcome, signup or login to view posts.</i></h4>
+    <a href="/sign-up"><button>Sign Up</button></a>
+    <a href="/log-in"><button>Login</button></a>
+  </div>
   <% } else { %>
+    <div class="container">
     <h3>Welcome back <%= user.name %></h3>
     <% if (!user.membershipStatus) { %>
     <p>Become a cipher by entering secret key and joining private membership</p>
     <a href="/user/join-private"><button>Join Private</button></a>
     <% } else { %>
-      <p style="color: rgb(255, 204, 0);">VERIFIED CIPHER</p>
+      <p style="color: #ffcc00;">VERIFIED CIPHER</p>
+      <div class="logout-btn">
+        <a href="/user/create-post"><button>Create New Post</button></a>
+        <a href="user/logout-page"><button>Logout</button></a>
+      </div>
       <% } %>
-      <a href="user/logout-page"><button>Logout</button></a>
-    <% } %>
+      <% posts.forEach((post) => { %>
+        <div class="post">
+          <h4>Title: <%= post.title %></h4>
+          <p>Post: <%= post.content %></p>
+          <% if (user.membershipStatus) { %>
+            <p class="author">Author: <%= post.author.name %></p>
+            <p class="date">Date Created: <%= post.createdAt.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+            </p>
+            <p class="date">Date Updated: <%= post.updatedAt.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+            </p>
+            <% } %>
+        </div>
+        <% }) %>
+    </div>
+      <% } %>
 </body>
 </html>
