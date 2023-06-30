@@ -11,6 +11,7 @@ exports.index = async(req, res, next) => {
     const posts = await Post.find().populate('author').exec();
     res.render('index', {user: req.user, posts: posts})
   } catch (error) {
+    res.send('An error occured, try again later')
     next(error)
   }
 }
@@ -79,7 +80,7 @@ exports.post_signup = [
       res.redirect('/')
     }
     catch(err) {
-      console.log(err);
+      res.send('An error occured, try again later')
       next(err)
     }
   }
@@ -96,3 +97,20 @@ exports.post_login = passport.authenticate('local', {
   successRedirect: ('/'),
   failureRedirect: ('/log-in')
 })
+
+exports.delete_post = async(req, res, next) => {
+  const postId = req.params.postId
+
+  try {
+    if(req.user.adminStatus) {
+      await Post.findByIdAndDelete(postId)
+      return res.redirect('/')
+    }
+    else{
+      return res.redirect('/user/make-admin')
+    }
+  } catch (error) {
+    res.send('An error occured, try again later')
+    next(error)
+  }
+}

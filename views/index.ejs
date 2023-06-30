@@ -163,7 +163,10 @@ button:hover {
       <p style="color: #ffcc00;">VERIFIED CIPHER</p>
       <div class="logout-btn">
         <a href="/user/create-post"><button>Create New Post</button></a>
-        <a href="user/logout-page"><button>Logout</button></a>
+        <a href="/user/logout-page"><button>Logout</button></a>
+        <% if (!user.adminStatus) { %>
+          <a href="/user/make-admin"><button>Administrator</button></a>
+          <% } %>
       </div>
       <% } %>
       <% posts.forEach((post) => { %>
@@ -176,10 +179,17 @@ button:hover {
             </p>
             <p class="date"><b>Date Updated:</b> <%= post.updatedAt.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
             </p>
+              <% if (user.adminStatus) { %>
+                <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                  <button type="submit">Delete</button>
+                </form>
+              <% } %>
             <% } %>
         </div>
         <% }) %>
     </div>
       <% } %>
+
+      
 </body>
 </html>

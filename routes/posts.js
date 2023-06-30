@@ -17,5 +17,6 @@ router.get('/log-in', postController.get_login)
 //post login form
 router.post('/log-in', postController.post_login)
 
+router.delete('/posts/:postId', postController.delete_post)
 
 module.exports = router

@@ -69,3 +69,28 @@ exports.create_post = async(req, res, next) => {
     next(err)
   }
 }
+
+
+exports.get_admin = (req, res) => {
+  res.render('make-admin')
+}
+
+
+exports.post_admin = async(req, res) => {
+  const {adminpass} = req.body;
+
+  try {
+    if(req.body.adminpass === process.env.ADMIN_PASS) {
+      const userID = req.user.id
+      const updatedUser = await User.findOneAndUpdate(
+        {_id: userID},
+        {adminStatus: true},
+        {new: true}
+      )
+      return res.redirect('/')
+    }
+    res.redirect('/user/make-admin')
+  } catch (error) {
+    next(error)
+  }
+}

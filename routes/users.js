@@ -14,4 +14,8 @@ router.get('/create-post', userController.get_create_post)
 
 router.post('/create-post', userController.create_post)
 
+router.get('/make-admin', userController.get_admin)
+
+router.post('/make-admin', userController.post_admin)
+
 module.exports = router;

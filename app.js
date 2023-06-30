@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('path')
+const methodOverride = require('method-override')
 const session = require('express-session')
 const mongoose = require('mongoose')
 const passport = require('./auth/passport.js')
@@ -8,6 +9,7 @@ const postRouter = require('./routes/posts.js')
 const userRouter = require('./routes/users.js')
 
 const app = express()
+app.use(methodOverride('_method'))
 
 //database connection
 const connectToDb = async() => {
@@ -31,8 +33,7 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
 app.use(express.urlencoded({extended: false}))
 app.use(passport.initialize())
 app.use(passport.session())
-
-
+   
 app.use('/', postRouter)
 app.use('/user', userRouter)
 
