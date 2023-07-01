@@ -8,7 +8,7 @@ const passport = require('passport')
 //get home page
 exports.index = async(req, res, next) => {
   try {
-    const posts = await Post.find().populate('author').exec();
+    const posts = await Post.find().sort({createdAt: -1}).populate('author').exec();
     res.render('index', {user: req.user, posts: posts})
   } catch (error) {
     res.send('An error occured, try again later')
