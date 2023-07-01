@@ -178,9 +178,9 @@ button:hover {
           <p><b>Post:</b> <%= post.content %></p>
           <% if (user.membershipStatus) { %>
             <p class="author">Author: <%= post.author.name %></p>
-            <p class="date"><b>Date Created:</b> <%= post.createdAt.toLocaleString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+            <p class="date"><b>Date Created:</b> <%= post.createdAt.toLocaleString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %>
             </p>
-            <p class="date"><b>Date Updated:</b> <%= post.updatedAt.toLocaleString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+            <p class="date"><b>Date Updated:</b> <%= post.updatedAt.toLocaleString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }) %>
             </p>
               <% if (user.adminStatus) { %>
                 <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
