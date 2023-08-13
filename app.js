@@ -7,10 +7,12 @@ const mongoose = require('mongoose')
 const passport = require('./auth/passport.js')
 const postRouter = require('./routes/posts.js')
 const userRouter = require('./routes/users.js')
+const morgan = require('morgan')
 
 const app = express()
 app.use(methodOverride('_method'))
 
+app.use(morgan('dev'))
 //database connection
 const connectToDb = async() => {
   try {
