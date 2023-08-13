@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "engines": {
+  "npm": "9.8.1"
+},
   "keywords": [],
   "author": "ewomatc",
   "license": "ISC",
